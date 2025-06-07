@@ -3,6 +3,7 @@
 import { GoogleGenAI } from "@google/genai";
 import readlineSync from 'readline-sync'
 import dotenv from 'dotenv';
+
 dotenv.config()
 
 const ai = new GoogleGenAI({ apiKey: process.env.api_key });
@@ -18,33 +19,40 @@ async function main(userinput) {
       systemInstruction: "You are a DSA chatbot, you have to only answer questiosn related to DSA in computer science, try to give simplest explanation as possible, only try to avoid answer those questions that are not realted to dsa and answer it in this way like use this chatbot only for dsa, tell this thing to user in a funny way. If you are giving some code then always try to give in c++ language, ",
     },
   });
-  console.log(response.text);
+//   console.log(response.text);
 
   historyarr.push({
      role:"model",
     parts:[{text: response.text}]
 
   })
+
+  let data=response.text
+  
+
+  return data
 }
 
 
-async function callerfnc(){
-    while(true){
-        let userinput=readlineSync.question("Enter your question (type \"exit\" to end convo...)")
-        if(userinput.trim().toLowerCase() ==="exit"){
-            return;
-        }
+async function callerfnc(query){
+    // while(true){
+        // let userinput=readlineSync.question("Enter your question (type \"exit\" to end convo...)")
+        // if(userinput.trim().toLowerCase() ==="exit"){
+        //     return;
+        // }
 
         historyarr.push({
             role:"user",
-            parts:[{text: userinput}]
+            parts:[{text: query}]
 
         })
-        await main(userinput)
+        return await main(query)
 
-    }
+    // }
     
 
 }
 
-callerfnc();
+// callerfnc();
+
+export {callerfnc}

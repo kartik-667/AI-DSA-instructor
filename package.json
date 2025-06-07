@@ -2,7 +2,7 @@
   "name": "chatbot",
   "version": "1.0.0",
   "main": "index.js",
-  "type":"module",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -12,6 +12,10 @@
   "dependencies": {
     "@google/genai": "^1.4.0",
     "dotenv": "^16.5.0",
+    "ejs": "^3.1.10",
+    "express": "^5.1.0",
+    "nodemon": "^3.1.10",
+    "path": "^0.12.7",
     "readline-sync": "^1.4.10"
   }
 }
