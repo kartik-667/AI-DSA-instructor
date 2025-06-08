@@ -20,6 +20,10 @@ app.get('/',(req,res)=>{
     
 })
 
+app.get('/ask', (req, res) => {
+    res.status(405).send('Method Not Allowed - Please use POST');
+});
+
 app.post('/ask',async (req,res)=>{
     const userinput=req.body.input
     // console.log(req.body);
